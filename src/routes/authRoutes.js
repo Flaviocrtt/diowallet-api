@@ -5,4 +5,4 @@ const authRoutes = Router();
 
 authRoutes.post("/signup", authController.signup);
 
-export default authRoutes
+export default authRoutes;
