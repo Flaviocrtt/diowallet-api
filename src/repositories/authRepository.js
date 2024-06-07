@@ -7,8 +7,11 @@ async function create(data){
 }
 
 async function findByEmail(email){
-    const user = await UserSchema.findOne({email});
-    return user;
+    return await UserSchema.findOne({email});
+}
+
+async function findById(id){
+    return await UserSchema.findById( id );
 }
 
 function generateToken(id){
@@ -18,5 +21,6 @@ function generateToken(id){
 export default {
     create,
     findByEmail,
+    findById,
     generateToken
 }
