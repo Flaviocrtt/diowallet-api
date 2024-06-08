@@ -12,6 +12,18 @@ async function create(req, res){
     }
 }
 
+async function findAllByUser(req, res){
+    const {_id: id} = res.locals.user;
+
+    try {
+        const transactions = await transactionService.findAllByUser(id);
+        return res.status(200).send(transactions);
+    } catch (error) {
+        return res.status(409).send(error.message);
+    }
+}
+
 export default {
-    create
+    create,
+    findAllByUser
 }
