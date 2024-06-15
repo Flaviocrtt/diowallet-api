@@ -20,7 +20,20 @@ async function signin(req, res){
         return res.status(401).send(err.message);
     }
 }
+
+async function LoggedUser(req, res){
+    const { _id: id } = res.locals.user
+
+    try{
+        const user = await authService.LoggedUser(id);
+        return res.send(user);
+    }catch(err){
+        return res.status(441).send(err.message);
+    }
+}
+
 export default {
     signup, 
-    signin
+    signin,
+    LoggedUser
 }
