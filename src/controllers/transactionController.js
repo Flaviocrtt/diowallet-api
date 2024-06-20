@@ -5,8 +5,8 @@ async function create(req, res){
     const {_id: id} = res.locals.user;
 
     try {
-        const transaction = await transactionService.create(body, id);
-        return res.status(201).send(transaction);
+        const result = await transactionService.create(body, id);
+        return res.status(201).send(result);
     } catch (error) {
         return res.status(409).send(error.message);
     }
@@ -23,7 +23,34 @@ async function findAllByUser(req, res){
     }
 }
 
+async function update(req, res){
+    const id = req.params.id;
+    const {_id: userId} = res.locals.user;
+    const data = req.body;
+
+    try {
+        const result = await transactionService.update(id, userId, data);
+        return res.status(202).send(result);
+    } catch (error) {
+        return res.status(409).send(error.message);
+    }
+}
+
+async function remove(req, res){
+    const id = req.params.id;
+    const {_id: userId} = res.locals.user;
+
+    try {
+        const result = await transactionService.remove(id, userId);
+        return res.status(202).send(result);
+    } catch (error) {
+        return res.status(409).send(error.message);
+    }
+}
+
 export default {
     create,
-    findAllByUser
+    findAllByUser,
+    update,
+    remove
 }

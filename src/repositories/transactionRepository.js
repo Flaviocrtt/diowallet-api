@@ -8,8 +8,18 @@ async function findAllByUser(id){
     return await TransactionSchema.find({userId: id});
 }
 
+async function update(id, userId, data){
+    return await TransactionSchema.updateOne({_id: id, userId: userId}, data);
+}
+
+async function remove(id, userId){
+    return await TransactionSchema.deleteOne({_id: id, userId: userId});
+}
+
 export default {
     create,
-    findAllByUser
+    findAllByUser,
+    update,
+    remove
 }
 

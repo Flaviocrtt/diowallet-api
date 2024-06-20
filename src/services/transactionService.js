@@ -1,9 +1,20 @@
 import transactionRepository from "../repositories/transactionRepository.js";
 
-async function create(data, id){
-    if(!id) throw new Error("User id required");
-    return await transactionRepository.create({...data, userId: id});
+async function create(data, userId){
+    if(!userId) throw new Error("User id required");
+    return await transactionRepository.create({...data, userId: userId});
 }
+
+async function update(id, userId, data){
+    if(!userId) throw new Error("User id required");
+    return await transactionRepository.update(id, userId, data);
+}
+
+async function remove(id, userId){
+    if(!userId) throw new Error("User id required");
+    return await transactionRepository.remove(id, userId);
+}
+
 
 async function findAllByUser(id){
     if(!id) throw new Error("User id required");
@@ -12,5 +23,7 @@ async function findAllByUser(id){
 
 export default {
     create,
-    findAllByUser
+    findAllByUser,
+    update,
+    remove
 }

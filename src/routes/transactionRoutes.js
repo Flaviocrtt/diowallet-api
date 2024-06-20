@@ -9,13 +9,24 @@ const transactionRoutes = Router();
 transactionRoutes.use(authMiddleware);
 
 transactionRoutes.post(
-    "/transaction", 
+    "/create", 
     validationSchemaMiddleware(CreateTransaction),
     transactionController.create
 );
 
+transactionRoutes.put(
+    "/update/:id",
+    transactionController.update
+);
+
+transactionRoutes.delete(
+    "/delete/:id", 
+    transactionController.remove
+);
+
+
 transactionRoutes.get(
-    "/transactions", 
+    "/list", 
     transactionController.findAllByUser
 );
 

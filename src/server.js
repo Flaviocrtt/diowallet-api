@@ -11,7 +11,7 @@ app.get("/", (req, res)=>{
     res.send("Teste");
 });
 app.use(authRoutes);
-app.use(transactionRoutes)
+app.use("/transaction", transactionRoutes)
 
 const port = process.env.PORT;
 app.listen(port, ()=> console.log(`server listening in port ${port}`));
