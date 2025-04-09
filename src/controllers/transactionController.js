@@ -23,6 +23,16 @@ async function findAllByUser(req, res){
     }
 }
 
+async function get(req, res){
+
+    try {
+        const transactions = await transactionService.get(req.params.id);
+        return res.status(200).send(transactions);
+    } catch (error) {
+        return res.status(409).send(error.message);
+    }
+}
+
 async function update(req, res){
     const id = req.params.id;
     const {_id: userId} = res.locals.user;
@@ -51,6 +61,7 @@ async function remove(req, res){
 export default {
     create,
     findAllByUser,
+    get,
     update,
     remove
 }

@@ -14,6 +14,11 @@ transactionRoutes.post(
     transactionController.create
 );
 
+transactionRoutes.get(
+    "/get/:id",
+    transactionController.get
+);
+
 transactionRoutes.put(
     "/update/:id",
     transactionController.update
@@ -23,7 +28,6 @@ transactionRoutes.delete(
     "/delete/:id", 
     transactionController.remove
 );
-
 
 transactionRoutes.get(
     "/list", 
